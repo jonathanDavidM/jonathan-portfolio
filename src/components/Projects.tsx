@@ -22,28 +22,28 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Project 1",
+    title: "Team A x Watch Mods Cavite - Ecommerce App",
     description:
-      "A modern web application built with React and TypeScript featuring responsive design and seamless user experience.",
-    technologies: ["React", "TypeScript", "CSS"],
+      "An online shop featuring Team A footwear and Watch Mods Cavite’s custom MOD watches. Built as a full-featured eCommerce platform, it offers a clean design, responsive layout, and smooth user shopping flow.",
+    technologies: ["Nextjs", "TypeScript", "CSS"],
     github: "https://github.com",
     live: "https://example.com",
   },
   {
-    title: "Project 2",
+    title: "Wedding Template Invitation",
     description:
-      "An interactive dashboard with real-time data visualization, providing actionable insights through elegant charts.",
+      "A digital wedding invitation template that transforms traditional invites into an elegant online experience with RSVP functionality and a mobile-friendly layout.",
     technologies: ["React", "Node.js", "MongoDB"],
     github: "https://github.com",
     live: "https://example.com",
   },
   {
-    title: "Project 3",
+    title: "Water Billing System",
     description:
-      "A responsive e-commerce platform with payment integration, cart management, and a smooth checkout flow.",
+      "A water billing system built with a SQL Server backend that streamlines meter reading, billing generation, and payment management through a structured and efficient workflow.",
     technologies: ["React", "Stripe", "Firebase"],
     github: "https://github.com",
-    live: "https://example.com",
+    // live: "https://",
   },
 ];
 
@@ -65,7 +65,7 @@ function Projects() {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="group transition-all hover:-translate-y-1 hover:shadow-lg"
+              className="group flex h-full flex-col transition-all hover:-translate-y-1 hover:shadow-lg"
             >
               <CardHeader>
                 <CardTitle className="text-lg">{project.title}</CardTitle>
@@ -73,8 +73,9 @@ function Projects() {
                   {project.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
+              <CardContent className="flex flex-1 flex-col">
+                <div className="flex-1" />
+                <div className="mt-auto flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <Badge key={tech} variant="secondary">
                       {tech}
@@ -82,7 +83,7 @@ function Projects() {
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="gap-2">
+              <CardFooter className="mt-auto gap-2">
                 {project.github && (
                   <Button
                     variant="ghost"

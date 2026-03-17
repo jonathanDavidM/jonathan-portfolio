@@ -1,18 +1,18 @@
 export const SECTIONS = {
-  HOME: 'home',
-  ABOUT: 'about',
-  SKILLS: 'skills',
-  PROJECTS: 'projects',
-  CONTACT: 'contact',
+  HOME: "home",
+  ABOUT: "about",
+  SKILLS: "skills",
+  PROJECTS: "projects",
+  CONTACT: "contact",
 } as const;
 
 export const SOCIAL_LINKS = {
-  EMAIL: 'mailto:magno.jonathan028@gmail.com',
-  GITHUB: 'https://github.com',
-  LINKEDIN: 'https://linkedin.com',
+  EMAIL: "magno.jonathan028@gmail.com",
+  GITHUB: "https://github.com/jonathanDavidM",
+  LINKEDIN: "https://linkedin.com",
 } as const;
 
 export const API_ENDPOINTS = {
-  CONTACT: '/api/contact/submit',
-  HEALTH: '/api/health',
+  CONTACT: "/api/contact/submit",
+  HEALTH: "/api/health",
 } as const;
