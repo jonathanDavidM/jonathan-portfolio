@@ -1,13 +1,13 @@
+import { useState, useCallback, useEffect } from "react";
 import { useContactForm } from "@/hooks/useContactForm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Github, Linkedin, Send } from "lucide-react";
+import { Mail, Github, Linkedin, Send, Check } from "lucide-react";
 import { SECTIONS, SOCIAL_LINKS } from "@/constants";
 
 const socialLinks = [
-  { icon: Mail, label: "Email", href: SOCIAL_LINKS.EMAIL },
   { icon: Github, label: "GitHub", href: SOCIAL_LINKS.GITHUB },
   { icon: Linkedin, label: "LinkedIn", href: SOCIAL_LINKS.LINKEDIN },
 ];
@@ -15,6 +15,22 @@ const socialLinks = [
 export default function Contact() {
   const { formData, isSubmitting, submitStatus, handleChange, handleSubmit } =
     useContactForm();
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(SOCIAL_LINKS.EMAIL);
+      setEmailCopied(true);
+    } catch {
+      setEmailCopied(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!emailCopied) return;
+    const t = setTimeout(() => setEmailCopied(false), 2000);
+    return () => clearTimeout(t);
+  }, [emailCopied]);
 
   return (
     <section id={SECTIONS.CONTACT} className="bg-muted/50 py-24">
@@ -115,7 +131,16 @@ export default function Contact() {
             </Button>
           </form>
 
-          <div className="mt-12 flex items-center justify-center gap-4">
+          <div className="relative mt-12 flex items-center justify-center gap-4">
+            <Button
+              variant="outline"
+              size="icon"
+              type="button"
+              onClick={copyEmail}
+              aria-label="Copy email"
+            >
+              <Mail className="size-5" />
+            </Button>
             {socialLinks.map((link) => (
               <Button
                 key={link.label}
@@ -133,6 +158,17 @@ export default function Contact() {
                 <link.icon className="size-5" />
               </Button>
             ))}
+
+            {emailCopied && (
+              <div
+                className="absolute -top-12 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-lg animate-in fade-in zoom-in-95 duration-200"
+                role="status"
+                aria-live="polite"
+              >
+                <Check className="size-4 shrink-0" />
+                Email copied to clipboard!
+              </div>
+            )}
           </div>
         </div>
       </div>
