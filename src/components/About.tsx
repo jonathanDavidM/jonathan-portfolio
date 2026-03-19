@@ -11,8 +11,7 @@ const highlights = [
   {
     icon: Lightbulb,
     title: "Problem Solver",
-    description:
-      "Turning complex problems into simple, elegant solutions.",
+    description: "Turning complex problems into simple, elegant solutions.",
   },
   {
     icon: Bot,
@@ -23,8 +22,7 @@ const highlights = [
   {
     icon: Users,
     title: "Team Player",
-    description:
-      "Collaborating effectively and sharing knowledge with others.",
+    description: "Collaborating effectively and sharing knowledge with others.",
   },
 ];
 
@@ -45,19 +43,14 @@ function About() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
             I'm a passionate web developer with a love for creating interactive
-            and user-friendly applications. I enjoy turning complex problems into
-            simple, beautiful, and intuitive solutions.
+            and user-friendly applications. I enjoy turning complex problems
+            into simple, beautiful, and intuitive solutions.
           </p>
           <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
             I also leverage AI tools professionally to boost productivity and
             code quality — including Claude, Cursor, ChatGPT, GitHub Copilot,
             and more. Integrating AI into my workflow allows me to ship faster
             while maintaining high standards.
-          </p>
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            When I'm not coding, you can find me exploring new technologies,
-            contributing to open-source projects, or sharing knowledge with the
-            developer community.
           </p>
         </div>
 

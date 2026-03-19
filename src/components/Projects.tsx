@@ -22,28 +22,43 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "My Personal Portfolio Website",
+    description:
+      "A portfolio website built with React, TypeScript, and Tailwind CSS. It offers a clean design, responsive layout, and smooth user experience.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Shadcn UI"],
+    github: "https://github.com/jonathanDavidM/jonathan-portfolio",
+    // live: "https://jonathan-portfolio.vercel.app/",
+  },
+  {
     title: "Team A x Watch Mods Cavite - Ecommerce App",
     description:
       "An online shop featuring Team A footwear and Watch Mods Cavite’s custom MOD watches. Built as a full-featured eCommerce platform, it offers a clean design, responsive layout, and smooth user shopping flow.",
-    technologies: ["Nextjs", "TypeScript", "CSS"],
-    github: "https://github.com",
-    live: "https://example.com",
+    technologies: [
+      "Nextjs",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Lucide",
+      "Google Sheets",
+    ],
+    github: "https://github.com/jonathanDavidM/ams-shop",
+    // live: "https://example.com",
   },
   {
     title: "Wedding Template Invitation",
     description:
       "A digital wedding invitation template that transforms traditional invites into an elegant online experience with RSVP functionality and a mobile-friendly layout.",
-    technologies: ["React", "Node.js", "MongoDB"],
-    github: "https://github.com",
-    live: "https://example.com",
-  },
-  {
-    title: "Water Billing System",
-    description:
-      "A water billing system built with a SQL Server backend that streamlines meter reading, billing generation, and payment management through a structured and efficient workflow.",
-    technologies: ["React", "Stripe", "Firebase"],
-    github: "https://github.com",
-    // live: "https://",
+    technologies: [
+      "Nextjs",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Lucide React",
+    ],
+    github: "https://github.com/jonathanDavidM/invitation-website-templates",
+    // live: "https://example.com",
   },
 ];
 
