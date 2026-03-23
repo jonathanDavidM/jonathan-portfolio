@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SECTIONS } from "@/constants";
 import logoJdm from "@/assets/logo-jdm.png";
 
 interface HeaderProps {
   activeSection: string;
-  theme: "light" | "dark";
-  toggleTheme: () => void;
 }
 
 const navItems = [
@@ -19,7 +17,7 @@ const navItems = [
   { id: SECTIONS.CONTACT, label: "Contact" },
 ];
 
-function Header({ activeSection, theme, toggleTheme }: HeaderProps) {
+function Header({ activeSection }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
@@ -59,19 +57,6 @@ function Header({ activeSection, theme, toggleTheme }: HeaderProps) {
         </ul>
 
         <div className="flex items-center gap-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? (
-              <Sun className="size-5" />
-            ) : (
-              <Moon className="size-5" />
-            )}
-          </Button>
-
           <Button
             variant="ghost"
             size="icon"

@@ -11,7 +11,8 @@ import Footer from "./components/Footer";
 
 function App() {
   const [activeSection, setActiveSection] = useState<string>(SECTIONS.HOME);
-  const { theme, toggleTheme } = useTheme();
+  // Applies theme from localStorage; toggle is hidden in Header for now
+  useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      <Header activeSection={activeSection} theme={theme} toggleTheme={toggleTheme} />
+      <Header activeSection={activeSection} />
       <main>
         <Hero />
         <About />

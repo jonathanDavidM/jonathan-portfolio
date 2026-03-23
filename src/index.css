@@ -116,6 +116,36 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@keyframes hero-bg-zoom {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.07);
+    }
+}
+
+@keyframes hero-gradient-shift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@layer utilities {
+    .animate-hero-bg-zoom {
+        animation: hero-bg-zoom 22s ease-in-out infinite alternate;
+    }
+    .animate-hero-name {
+        background-size: 200% auto;
+        animation: hero-gradient-shift 5s ease-in-out infinite;
+    }
+}
+
 @layer base {
     * {
         @apply border-border outline-ring/50;

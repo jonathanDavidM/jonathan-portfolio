@@ -6,31 +6,35 @@ function Hero() {
   return (
     <section
       id={SECTIONS.HOME}
-      className="relative flex min-h-screen flex-col items-end justify-center bg-cover bg-center bg-no-repeat px-6 text-right text-white"
-      style={{ backgroundImage: `url(${heroBanner})` }}
+      className="relative flex min-h-screen flex-col items-end justify-center overflow-hidden px-6 text-right text-white"
     >
-      <div className="absolute inset-0 bg-black/60" />
-      <div className="relative max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-700">
-        <p className="mb-4 text-sm font-medium uppercase tracking-widest text-white/70">
+      <div
+        className="animate-hero-bg-zoom absolute inset-0 origin-center bg-cover bg-center bg-no-repeat will-change-transform"
+        style={{ backgroundImage: `url(${heroBanner})` }}
+        aria-hidden
+      />
+      <div className="absolute inset-0 animate-in fade-in duration-1000 bg-black/60" />
+      <div className="relative max-w-3xl">
+        <p className="mb-4 animate-in fade-in slide-in-from-bottom-6 fill-mode-both text-sm font-medium uppercase tracking-widest text-white/70 duration-700 delay-100">
           Welcome to my portfolio
         </p>
-        <h1 className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className="mb-4 animate-in fade-in slide-in-from-bottom-6 fill-mode-both text-5xl font-bold tracking-tight duration-700 delay-200 sm:text-6xl lg:text-7xl">
           Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-amber-300 to-yellow-200 bg-clip-text text-transparent">
+          <span className="animate-hero-name bg-linear-to-r from-amber-300 via-yellow-100 to-amber-300 bg-clip-text text-transparent">
             Jonathan
           </span>
         </h1>
-        <h2 className="mb-4 text-2xl font-medium text-white/90 sm:text-3xl">
+        <h2 className="mb-4 animate-in fade-in slide-in-from-bottom-6 fill-mode-both text-2xl font-medium text-white/90 duration-700 delay-300 sm:text-3xl">
           Web Developer
         </h2>
-        <p className="ml-auto mb-8 max-w-xl text-lg text-white/70">
+        <p className="ml-auto mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-6 fill-mode-both text-lg text-white/70 duration-700 delay-500">
           I create beautiful and functional web experiences with modern
           technologies and clean code.
         </p>
-        <div className="flex flex-wrap items-center justify-end gap-4">
+        <div className="flex flex-wrap items-center justify-end gap-4 animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-700">
           <Button
             size="lg"
-            className="h-11 rounded-full bg-white px-8 text-primary hover:bg-white/90"
+            className="h-11 rounded-full bg-white px-8 text-primary transition-transform hover:scale-[1.02] hover:bg-white/90 active:scale-[0.98]"
             onClick={() =>
               document
                 .getElementById(SECTIONS.PROJECTS)
@@ -42,7 +46,7 @@ function Hero() {
           <Button
             variant="outline"
             size="lg"
-            className="h-11 rounded-full border-white/30 bg-white/10 px-8 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
+            className="h-11 rounded-full border-white/30 bg-white/10 px-8 text-white backdrop-blur-sm transition-transform hover:scale-[1.02] hover:bg-white/20 hover:text-white active:scale-[0.98]"
             onClick={() =>
               document
                 .getElementById(SECTIONS.CONTACT)
