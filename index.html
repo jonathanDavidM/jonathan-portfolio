@@ -6,14 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jonathan | Web Developer</title>
     <script>
-      (function() {
-        var t = localStorage.getItem('theme');
-        if (t === 'light') document.documentElement.classList.remove('dark');
+      (function () {
+        var t = localStorage.getItem("theme");
+        if (t === "light") document.documentElement.classList.remove("dark");
       })();
     </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Chat Widget -->
+    <link rel="stylesheet" href="/chat-widget/chat-widget.css" />
+    <script>
+      window.__CHAT_WIDGET_API_URL__ =
+        "https://my-chat-bot-alpha-nine.vercel.app/";
+    </script>
+    <script src="/chat-widget/chat-widget.iife.js"></script>
   </body>
 </html>
