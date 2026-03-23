@@ -1,14 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { SECTIONS } from "@/constants";
+import heroBanner from "@/assets/hero-banner.jpg";
 
 function Hero() {
   return (
     <section
       id={SECTIONS.HOME}
-      className="relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-primary via-primary/90 to-blue-900 px-6 text-center text-white"
+      className="relative flex min-h-screen flex-col items-end justify-center bg-cover bg-center bg-no-repeat px-6 text-right text-white"
+      style={{ backgroundImage: `url(${heroBanner})` }}
     >
-      <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-700">
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="relative max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-700">
         <p className="mb-4 text-sm font-medium uppercase tracking-widest text-white/70">
           Welcome to my portfolio
         </p>
@@ -21,11 +24,11 @@ function Hero() {
         <h2 className="mb-4 text-2xl font-medium text-white/90 sm:text-3xl">
           Web Developer
         </h2>
-        <p className="mx-auto mb-8 max-w-xl text-lg text-white/70">
+        <p className="ml-auto mb-8 max-w-xl text-lg text-white/70">
           I create beautiful and functional web experiences with modern
           technologies and clean code.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-end gap-4">
           <Button
             size="lg"
             className="h-11 rounded-full bg-white px-8 text-primary hover:bg-white/90"
@@ -52,7 +55,7 @@ function Hero() {
         </div>
       </div>
 
-      <button
+      {/* <button
         onClick={() =>
           document
             .getElementById(SECTIONS.ABOUT)
@@ -62,7 +65,7 @@ function Hero() {
       >
         <span>Scroll Down</span>
         <ArrowDown className="size-5" />
-      </button>
+      </button> */}
     </section>
   );
 }

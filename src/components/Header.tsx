@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SECTIONS } from "@/constants";
+import logoJdm from "@/assets/logo-jdm.png";
 
 interface HeaderProps {
   activeSection: string;
@@ -36,7 +37,7 @@ function Header({ activeSection, theme, toggleTheme }: HeaderProps) {
           onClick={() => scrollToSection(SECTIONS.HOME)}
           className="text-xl font-bold tracking-tight text-primary"
         >
-          JD
+          <img src={logoJdm} alt="JDM Logo" className="h-12" />
         </button>
 
         <ul className="hidden items-center gap-1 md:flex">
