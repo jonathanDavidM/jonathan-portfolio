@@ -22,12 +22,12 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "My Personal Portfolio Website",
+    title: "AI Chat Widget",
     description:
-      "A portfolio website built with React, TypeScript, and Tailwind CSS. It offers a clean design, responsive layout, and smooth user experience.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Shadcn UI"],
-    github: "https://github.com/jonathanDavidM/jonathan-portfolio",
-    // live: "https://jonathan-portfolio.vercel.app/",
+      "An embeddable AI chat widget powered by Groq (Llama 3.3 70B). Built as a personal assistant that answers visitor questions using a custom knowledge base and uploaded documents.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Express", "Groq AI"],
+    github: "https://github.com/jonathanDavidM/my-chat-bot",
+    live: "https://my-chat-bot-alpha-nine.vercel.app",
   },
   {
     title: "Team A x Watch Mods Cavite - Ecommerce App",
