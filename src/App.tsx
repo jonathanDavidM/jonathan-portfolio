@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
-  const [activeSection, setActiveSection] = useState(SECTIONS.HOME);
+  const [activeSection, setActiveSection] = useState<string>(SECTIONS.HOME);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
