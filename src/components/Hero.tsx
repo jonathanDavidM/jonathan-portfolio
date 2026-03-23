@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
 import { SECTIONS } from "@/constants";
 import heroBanner from "@/assets/hero-banner.jpg";
 
