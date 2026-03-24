@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 import { SECTIONS } from "@/constants";
 import heroBanner from "@/assets/hero-banner.jpg";
 
@@ -54,6 +55,17 @@ function Hero() {
             }
           >
             Get In Touch
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="h-11 rounded-full border-white/30 bg-white/10 px-8 text-white backdrop-blur-sm transition-transform hover:scale-[1.02] hover:bg-white/20 hover:text-white active:scale-[0.98]"
+            render={
+              <a href="https://drive.google.com/YOUR_RESUME_LINK" target="_blank" rel="noopener noreferrer" />
+            }
+          >
+            <Download className="size-4" />
+            Download CV
           </Button>
         </div>
       </div>
