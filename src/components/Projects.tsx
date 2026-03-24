@@ -105,6 +105,7 @@ function Projects() {
               <CardFooter className="mt-auto gap-2">
                 {project.github && (
                   <Button
+                    nativeButton={false}
                     variant="ghost"
                     size="sm"
                     render={
@@ -121,6 +122,7 @@ function Projects() {
                 )}
                 {project.live && (
                   <Button
+                    nativeButton={false}
                     variant="ghost"
                     size="sm"
                     render={

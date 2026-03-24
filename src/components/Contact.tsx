@@ -144,6 +144,7 @@ export default function Contact() {
             {socialLinks.map((link) => (
               <Button
                 key={link.label}
+                nativeButton={false}
                 variant="outline"
                 size="icon"
                 render={

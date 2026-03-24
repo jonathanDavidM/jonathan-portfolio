@@ -57,6 +57,7 @@ function Hero() {
             Get In Touch
           </Button>
           <Button
+            nativeButton={false}
             variant="outline"
             size="lg"
             className="h-11 rounded-full border-white/30 bg-white/10 px-8 text-white backdrop-blur-sm transition-transform hover:scale-[1.02] hover:bg-white/20 hover:text-white active:scale-[0.98]"
