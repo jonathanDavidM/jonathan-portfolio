@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ExternalLink, Github } from "lucide-react";
 import { SECTIONS } from "@/constants";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface Project {
   title: string;
@@ -63,10 +64,12 @@ const projects: Project[] = [
 ];
 
 function Projects() {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section id={SECTIONS.PROJECTS} className="py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
+      <div ref={ref} className="mx-auto max-w-6xl px-6">
+        <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
             My Work
           </p>
@@ -80,7 +83,8 @@ function Projects() {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="group flex h-full flex-col transition-all hover:-translate-y-1 hover:shadow-lg"
+              className={`group flex h-full flex-col transition-all hover:-translate-y-1 hover:shadow-lg ${isVisible ? "" : "opacity-0"}`}
+              style={isVisible ? { animation: `fade-in-up 0.5s ease-out ${0.2 + index * 0.15}s both` } : undefined}
             >
               <CardHeader>
                 <CardTitle className="text-lg">{project.title}</CardTitle>

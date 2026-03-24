@@ -116,6 +116,28 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-up-delay {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes hero-bg-zoom {
     0%,
     100% {
@@ -139,6 +161,12 @@
 @layer utilities {
     .animate-hero-bg-zoom {
         animation: hero-bg-zoom 22s ease-in-out infinite alternate;
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.7s ease-out both;
+    }
+    .animate-fade-in-up-delay {
+        animation: fade-in-up-delay 0.7s ease-out 0.2s both;
     }
     .animate-hero-name {
         background-size: 200% auto;
