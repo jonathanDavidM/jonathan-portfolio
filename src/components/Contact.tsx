@@ -4,7 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Github, Linkedin, Send, Check, Sparkles, MessageSquare } from "lucide-react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Send,
+  Check,
+  Sparkles,
+  MessageSquare,
+} from "lucide-react";
 import { SECTIONS, SOCIAL_LINKS } from "@/constants";
 
 const socialLinks = [
@@ -13,8 +21,14 @@ const socialLinks = [
 ];
 
 export default function Contact() {
-  const { formData, isSubmitting, submitStatus, handleChange, handleSubmit, resetForm } =
-    useContactForm();
+  const {
+    formData,
+    isSubmitting,
+    submitStatus,
+    handleChange,
+    handleSubmit,
+    resetForm,
+  } = useContactForm();
   const [emailCopied, setEmailCopied] = useState(false);
 
   const copyEmail = useCallback(async () => {
@@ -51,27 +65,53 @@ export default function Contact() {
 
         <div className="mx-auto max-w-lg">
           {submitStatus.type === "success" ? (
-            <div className="relative space-y-8 text-center" role="alert" aria-live="polite">
+            <div
+              className="relative space-y-8 text-center"
+              role="alert"
+              aria-live="polite"
+            >
               {/* Sparkle particles */}
               <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <Sparkles className="absolute left-[15%] top-[10%] size-4 text-primary/60 animate-sparkle" style={{ animationDelay: "0.1s" }} />
-                <Sparkles className="absolute right-[18%] top-[5%] size-3 text-primary/40 animate-sparkle" style={{ animationDelay: "0.3s" }} />
-                <Sparkles className="absolute left-[25%] top-[25%] size-3 text-primary/50 animate-sparkle" style={{ animationDelay: "0.5s" }} />
-                <Sparkles className="absolute right-[25%] top-[20%] size-4 text-primary/60 animate-sparkle" style={{ animationDelay: "0.2s" }} />
-                <Sparkles className="absolute left-[10%] top-[18%] size-3 text-primary/30 animate-sparkle" style={{ animationDelay: "0.7s" }} />
-                <Sparkles className="absolute right-[12%] top-[15%] size-3 text-primary/50 animate-sparkle" style={{ animationDelay: "0.4s" }} />
+                <Sparkles
+                  className="absolute left-[15%] top-[10%] size-4 text-primary/60 animate-sparkle"
+                  style={{ animationDelay: "0.1s" }}
+                />
+                <Sparkles
+                  className="absolute right-[18%] top-[5%] size-3 text-primary/40 animate-sparkle"
+                  style={{ animationDelay: "0.3s" }}
+                />
+                <Sparkles
+                  className="absolute left-[25%] top-[25%] size-3 text-primary/50 animate-sparkle"
+                  style={{ animationDelay: "0.5s" }}
+                />
+                <Sparkles
+                  className="absolute right-[25%] top-[20%] size-4 text-primary/60 animate-sparkle"
+                  style={{ animationDelay: "0.2s" }}
+                />
+                <Sparkles
+                  className="absolute left-[10%] top-[18%] size-3 text-primary/30 animate-sparkle"
+                  style={{ animationDelay: "0.7s" }}
+                />
+                <Sparkles
+                  className="absolute right-[12%] top-[15%] size-3 text-primary/50 animate-sparkle"
+                  style={{ animationDelay: "0.4s" }}
+                />
               </div>
 
               {/* Glowing background card */}
               <div className="relative rounded-2xl border border-border bg-card p-10 shadow-2xl">
                 {/* Glow effect behind card */}
-                <div className="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-primary/10 blur-sm animate-success-glow" />
+                <div className="absolute -inset-px -z-10 rounded-2xl bg-linear-to-br from-primary/20 via-transparent to-primary/10 blur-sm animate-success-glow" />
 
                 {/* Animated check circle */}
                 <div className="mx-auto mb-6 flex size-20 items-center justify-center animate-success-scale-in">
                   <div className="relative flex size-20 items-center justify-center rounded-full bg-primary/10 animate-success-ring-pulse">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-primary/5" />
-                    <svg className="relative size-10" viewBox="0 0 24 24" fill="none">
+                    <div className="absolute inset-0 rounded-full bg-linear-to-br from-primary/20 to-primary/5" />
+                    <svg
+                      className="relative size-10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
                       <path
                         d="M5 13l4 4L19 7"
                         stroke="currentColor"
@@ -82,7 +122,8 @@ export default function Contact() {
                         style={{
                           strokeDasharray: 50,
                           strokeDashoffset: 0,
-                          animation: "success-check-draw 0.6s ease-out 0.3s both",
+                          animation:
+                            "success-check-draw 0.6s ease-out 0.3s both",
                         }}
                       />
                     </svg>
@@ -111,11 +152,7 @@ export default function Contact() {
               </Button>
             </div>
           ) : (
-            <form
-              className="space-y-4"
-              onSubmit={handleSubmit}
-              noValidate
-            >
+            <form className="space-y-4" onSubmit={handleSubmit} noValidate>
               <div>
                 <Input
                   type="text"
