@@ -124,6 +124,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                   aria-label="Your name"
                 />
               </div>
@@ -135,6 +136,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                   aria-label="Your email"
                 />
               </div>
@@ -145,6 +147,7 @@ export default function Contact() {
                   placeholder="Subject (Optional)"
                   value={formData.subject}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   aria-label="Subject"
                 />
               </div>
@@ -156,6 +159,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                   aria-label="Your message"
                 />
               </div>
