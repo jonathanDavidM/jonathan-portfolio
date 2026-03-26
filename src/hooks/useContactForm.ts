@@ -67,7 +67,7 @@ export function useContactForm(): UseContactFormReturn {
             type: "success",
             message: response.message,
           });
-          resetForm();
+          setFormData(initialFormData);
         } else {
           setSubmitStatus({
             type: "error",

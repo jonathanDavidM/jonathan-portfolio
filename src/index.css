@@ -158,6 +158,73 @@
     }
 }
 
+@keyframes success-scale-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes success-check-draw {
+    0% {
+        stroke-dashoffset: 50;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes success-ring-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 oklch(0.546 0.198 250 / 40%);
+    }
+    50% {
+        box-shadow: 0 0 0 12px oklch(0.546 0.198 250 / 0%);
+    }
+}
+
+@keyframes success-glow {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes success-text-in {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sparkle-float {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0);
+    }
+}
+
 @layer utilities {
     .animate-hero-bg-zoom {
         animation: hero-bg-zoom 22s ease-in-out infinite alternate;
@@ -171,6 +238,27 @@
     .animate-hero-name {
         background-size: 200% auto;
         animation: hero-gradient-shift 5s ease-in-out infinite;
+    }
+    .animate-success-scale-in {
+        animation: success-scale-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    }
+    .animate-success-ring-pulse {
+        animation: success-ring-pulse 2s ease-in-out infinite;
+    }
+    .animate-success-glow {
+        animation: success-glow 2.5s ease-in-out infinite;
+    }
+    .animate-success-text-in {
+        animation: success-text-in 0.5s ease-out both;
+    }
+    .animate-success-text-in-delay {
+        animation: success-text-in 0.5s ease-out 0.2s both;
+    }
+    .animate-success-btn-in {
+        animation: success-text-in 0.5s ease-out 0.5s both;
+    }
+    .animate-sparkle {
+        animation: sparkle-float 1.2s ease-out both;
     }
 }
 
