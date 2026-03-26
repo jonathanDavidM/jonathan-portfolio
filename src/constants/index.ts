@@ -9,7 +9,7 @@ export const SECTIONS = {
 export const SOCIAL_LINKS = {
   EMAIL: "magno.jonathan028@gmail.com",
   GITHUB: "https://github.com/jonathanDavidM",
-  LINKEDIN: "https://linkedin.com",
+  LINKEDIN: "www.linkedin.com/in/jonathan-magno-ab3775146",
 } as const;
 
 export const API_ENDPOINTS = {
