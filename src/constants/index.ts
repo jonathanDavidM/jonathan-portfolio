@@ -14,5 +14,4 @@ export const SOCIAL_LINKS = {
 
 export const API_ENDPOINTS = {
   CONTACT: "/api/contact/submit",
-  HEALTH: "/api/health",
 } as const;
