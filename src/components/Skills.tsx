@@ -8,6 +8,8 @@ const skills = [
   { name: "JavaScript", level: 90 },
   { name: "HTML/CSS", level: 95 },
   { name: "Node.js", level: 80 },
+  { name: "Python", level: 80 },
+  { name: "FastAPI", level: 75 },
   { name: "Git", level: 85 },
 ];
 
