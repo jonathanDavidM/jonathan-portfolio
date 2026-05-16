@@ -38,7 +38,16 @@ const skillCategories: SkillCategory[] = [
     icon: Server,
     title: "Backend",
     description: "Designing reliable APIs and server-side logic.",
-    skills: ["Node.js", "Express", "REST APIs", "Nodemailer", "Zod", "Vercel Functions"],
+    skills: [
+      "Node.js",
+      "Express",
+      "Python",
+      "FastAPI",
+      "REST APIs",
+      "Nodemailer",
+      "Zod",
+      "Vercel Functions",
+    ],
   },
   {
     icon: Database,
