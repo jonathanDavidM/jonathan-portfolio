@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SECTIONS } from "@/constants";
+import { useTheme } from "@/hooks/useTheme";
 import logoJdm from "@/assets/logo-jdm.png";
 
 interface HeaderProps {
@@ -12,6 +13,7 @@ interface HeaderProps {
 const navItems = [
   { id: SECTIONS.HOME, label: "Home" },
   { id: SECTIONS.ABOUT, label: "About" },
+  { id: SECTIONS.EXPERIENCE, label: "Experience" },
   { id: SECTIONS.SKILLS, label: "Skills" },
   { id: SECTIONS.PROJECTS, label: "Projects" },
   { id: SECTIONS.CONTACT, label: "Contact" },
@@ -19,6 +21,7 @@ const navItems = [
 
 function Header({ activeSection }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -57,6 +60,19 @@ function Header({ activeSection }: HeaderProps) {
         </ul>
 
         <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            {theme === "dark" ? (
+              <Sun className="size-5" />
+            ) : (
+              <Moon className="size-5" />
+            )}
+          </Button>
           <Button
             variant="ghost"
             size="icon"
