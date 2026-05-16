@@ -26,11 +26,12 @@ function Hero() {
           </span>
         </h1>
         <h2 className="mb-4 animate-in fade-in slide-in-from-bottom-6 fill-mode-both text-2xl font-medium text-white/90 duration-700 delay-300 sm:text-3xl">
-          Web Developer
+          Full Stack Developer
         </h2>
         <p className="ml-auto mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-6 fill-mode-both text-lg text-white/70 duration-700 delay-500">
-          I create beautiful and functional web experiences with modern
-          technologies and clean code.
+          I build fast, accessible, and beautifully crafted web applications —
+          from polished UIs to reliable APIs — with modern technologies and
+          clean code.
         </p>
         <div className="flex flex-wrap items-center justify-end gap-4 animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-700">
           <Button

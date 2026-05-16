@@ -15,10 +15,11 @@ function App() {
   useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = Object.values(SECTIONS);
-      const scrollPosition = window.scrollY + 100;
+    const sections = Object.values(SECTIONS);
+    let ticking = false;
 
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + 100;
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -32,9 +33,17 @@ function App() {
           }
         }
       }
+      ticking = false;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveSection);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

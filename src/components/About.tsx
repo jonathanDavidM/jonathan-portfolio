@@ -45,9 +45,11 @@ function About() {
 
         <div className={`mx-auto max-w-2xl text-center ${isVisible ? "animate-fade-in-up-delay" : "opacity-0"}`}>
           <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-            I'm a passionate web developer with a love for creating interactive
-            and user-friendly applications. I enjoy turning complex problems
-            into simple, beautiful, and intuitive solutions.
+            I'm a passionate full stack developer who loves building
+            interactive, user-friendly applications from end to end — crafting
+            polished interfaces on the frontend and dependable, well-structured
+            APIs on the backend. I enjoy turning complex problems into simple,
+            beautiful, and intuitive solutions.
           </p>
           <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
             I also leverage AI tools professionally to boost productivity and

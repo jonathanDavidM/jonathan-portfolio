@@ -88,7 +88,7 @@ export function useContactForm(): UseContactFormReturn {
         setIsSubmitting(false);
       }
     },
-    [formData, resetForm]
+    [formData]
   );
 
   return {
