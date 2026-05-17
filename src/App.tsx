@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { SECTIONS } from "@/constants";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -57,6 +58,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <SpeedInsights />
     </div>
   );
 }
