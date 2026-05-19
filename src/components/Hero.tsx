@@ -75,7 +75,7 @@ function Hero() {
           </Button>
         </div>
 
-        <div className="mt-8 flex justify-end animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-900">
+        <div className="mt-8 flex justify-end animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-1000">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm text-white/80 backdrop-blur-sm">
             <span className="relative flex size-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
