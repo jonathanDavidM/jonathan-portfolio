@@ -32,9 +32,9 @@ const projects: Project[] = [
     live: "https://jonathan-portfolio.vercel.app",
   },
   {
-    title: "AI Chat Widget",
+    title: "AI Agent Chat Widget",
     description:
-      "An embeddable AI chat widget powered by Groq (Llama 3.3 70B). Built as a personal assistant that answers visitor questions using a custom knowledge base and uploaded documents.",
+      "An embeddable AI agent powered by Groq (Llama 3.3 70B) with function-calling tools. Beyond a chatbot — it fetches my live GitHub activity, returns structured project details, and can email me a contact message directly from the conversation via Resend. Try it in the corner of this page.",
     technologies: [
       "React",
       "TypeScript",
@@ -42,6 +42,9 @@ const projects: Project[] = [
       "Vite",
       "Express",
       "Groq AI",
+      "Function Calling",
+      "Resend",
+      "SSE Streaming",
     ],
     github: "https://github.com/jonathanDavidM/my-chat-bot",
     live: "https://my-chat-bot-alpha-nine.vercel.app",

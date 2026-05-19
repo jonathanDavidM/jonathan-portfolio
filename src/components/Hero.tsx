@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, Sparkles } from "lucide-react";
 import { SECTIONS } from "@/constants";
 import heroBanner from "@/assets/hero-banner.jpg";
 
@@ -73,6 +73,17 @@ function Hero() {
             <Download className="size-4" />
             Download CV
           </Button>
+        </div>
+
+        <div className="mt-8 flex justify-end animate-in fade-in slide-in-from-bottom-6 fill-mode-both duration-700 delay-900">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm text-white/80 backdrop-blur-sm">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
+            </span>
+            <Sparkles className="size-3.5 text-amber-300" />
+            <span>Chat with my AI agent — bottom right corner</span>
+          </div>
         </div>
       </div>
 
