@@ -1,8 +1,7 @@
-import { Briefcase, type LucideIcon } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { SECTIONS } from "@/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import SectionHeader from "./SectionHeader";
+import TechTag from "./TechTag";
 
 interface ExperienceItem {
   role: string;
@@ -11,7 +10,6 @@ interface ExperienceItem {
   current?: boolean;
   highlights: string[];
   stack?: string[];
-  icon?: LucideIcon;
 }
 
 const experiences: ExperienceItem[] = [
@@ -25,7 +23,6 @@ const experiences: ExperienceItem[] = [
       "Build responsive, user-friendly interfaces while integrating backend services, WebSocket communication, and real-time chatbot interactions.",
       "Collaborate with backend engineers and AI/ML teams to implement personalized conversation flows, context management, and API-driven features.",
       "Design and optimize API integrations, application performance, accessibility, and cross-platform responsiveness.",
-      "Contribute to deployment workflows, debugging, and overall application stability in agile development environments.",
     ],
     stack: [
       "React",
@@ -46,7 +43,14 @@ const experiences: ExperienceItem[] = [
       "Designed creative prototypes aligned with product specifications.",
       "Troubleshot and debugged applications; maintained technical documentation including system architecture diagrams, API specs, and user manuals.",
     ],
-    stack: ["JavaScript", "TypeScript", "React", ".NET", "Azure DevOps", "Power Platform"],
+    stack: [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      ".NET",
+      "Azure DevOps",
+      "Power Platform",
+    ],
   },
   {
     role: "IT Assistant",
@@ -65,70 +69,64 @@ function Experience() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id={SECTIONS.EXPERIENCE} className="py-24">
-      <div ref={ref} className="mx-auto max-w-4xl px-6">
-        <div
-          className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-        >
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            Career Journey
-          </p>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Experience
-          </h2>
-          <Separator className="mx-auto mb-12 w-12 bg-primary" />
-        </div>
+    <section id={SECTIONS.EXPERIENCE} className="scroll-mt-24 py-24">
+      <div ref={ref} className="mx-auto max-w-5xl px-6">
+        <SectionHeader
+          index="02"
+          kicker="Experience"
+          title="A path from IT support to full-stack"
+          className={isVisible ? "animate-fade-in-up" : "opacity-0"}
+        />
 
-        <ol className="relative ml-3 border-l-2 border-border sm:ml-6">
+        <ol className="mt-12 border-l border-border">
           {experiences.map((item, index) => (
             <li
               key={`${item.company}-${item.period}`}
-              className={`relative mb-12 pl-8 last:mb-0 sm:pl-12 ${isVisible ? "" : "opacity-0"}`}
+              className={`relative pb-12 pl-8 last:pb-0 sm:pl-10 ${
+                isVisible ? "" : "opacity-0"
+              }`}
               style={
                 isVisible
                   ? {
-                      animation: `fade-in-up 0.5s ease-out ${0.2 + index * 0.15}s both`,
+                      animation: `fade-in-up 0.5s ease-out ${
+                        0.15 + index * 0.12
+                      }s both`,
                     }
                   : undefined
               }
             >
-              {/* Timeline marker */}
+              {/* Timeline node */}
               <span
-                className={`absolute -left-[13px] flex size-6 items-center justify-center rounded-full ring-4 ring-background sm:-left-[15px] sm:size-7 ${
-                  item.current
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground"
-                }`}
                 aria-hidden
-              >
-                <Briefcase className="size-3 sm:size-3.5" />
-              </span>
+                className={`absolute -left-[7px] top-2 size-3.5 rounded-full ring-4 ring-background ${
+                  item.current
+                    ? "bg-primary shadow-lg shadow-primary/50"
+                    : "bg-border"
+                }`}
+              />
 
-              <div className="group rounded-xl border bg-card p-6 transition-all hover:border-primary/20 hover:shadow-lg">
-                <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
-                  <div>
-                    <h3 className="text-lg font-semibold">{item.role}</h3>
-                    <p className="text-sm font-medium text-primary">
-                      {item.company}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
+              <div className="card-elevated card-hover p-6">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h3 className="text-body font-semibold text-foreground">
+                    {item.role}
+                    <span className="text-muted-foreground">
+                      {" "}
+                      · {item.company}
+                    </span>
+                  </h3>
+                  <p className="flex items-center gap-2 font-mono text-caption text-muted-foreground">
                     {item.current && (
-                      <Badge className="bg-primary/15 text-primary hover:bg-primary/20">
-                        Current
-                      </Badge>
+                      <span className="text-primary">● Current</span>
                     )}
-                    <time className="text-sm font-medium text-muted-foreground">
-                      {item.period}
-                    </time>
-                  </div>
+                    <span>{item.period}</span>
+                  </p>
                 </div>
 
-                <ul className="mb-4 space-y-2">
+                <ul className="mt-4 space-y-2">
                   {item.highlights.map((highlight) => (
                     <li
                       key={highlight}
-                      className="relative pl-5 text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-[0.55rem] before:size-1.5 before:rounded-full before:bg-primary/60"
+                      className="relative pl-5 text-body text-muted-foreground before:absolute before:left-0 before:top-[0.7rem] before:h-px before:w-2.5 before:bg-primary/50"
                     >
                       {highlight}
                     </li>
@@ -136,15 +134,9 @@ function Experience() {
                 </ul>
 
                 {item.stack && item.stack.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="mt-5 flex flex-wrap gap-2">
                     {item.stack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="secondary"
-                        className="px-2.5 py-0.5 text-xs"
-                      >
-                        {tech}
-                      </Badge>
+                      <TechTag key={tech}>{tech}</TechTag>
                     ))}
                   </div>
                 )}

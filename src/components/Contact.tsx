@@ -3,22 +3,23 @@ import { useContactForm } from "@/hooks/useContactForm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Separator } from "@/components/ui/separator";
-import {
-  Mail,
-  Github,
-  Linkedin,
-  Send,
-  Check,
-  Sparkles,
-  MessageSquare,
-} from "lucide-react";
+import { Mail, Github, Linkedin, Send, Check, ArrowUpRight } from "lucide-react";
 import { SECTIONS, SOCIAL_LINKS } from "@/constants";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import SectionHeader from "./SectionHeader";
 
-const socialLinks = [
-  { icon: Github, label: "GitHub", href: SOCIAL_LINKS.GITHUB },
-  { icon: Linkedin, label: "LinkedIn", href: SOCIAL_LINKS.LINKEDIN },
+const directLinks = [
+  { icon: Github, label: "GitHub", value: "@jonathanDavidM", href: SOCIAL_LINKS.GITHUB },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "Jonathan Magno",
+    href: SOCIAL_LINKS.LINKEDIN,
+  },
 ];
+
+const fieldLabel =
+  "mb-1.5 block font-mono text-caption uppercase text-muted-foreground";
 
 export default function Contact() {
   const {
@@ -29,6 +30,7 @@ export default function Contact() {
     handleSubmit,
     resetForm,
   } = useContactForm();
+  const { ref, isVisible } = useScrollAnimation();
   const [emailCopied, setEmailCopied] = useState(false);
 
   const copyEmail = useCallback(async () => {
@@ -47,227 +49,210 @@ export default function Contact() {
   }, [emailCopied]);
 
   return (
-    <section id={SECTIONS.CONTACT} className="bg-muted/50 py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            Contact
-          </p>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Get In Touch
-          </h2>
-          <Separator className="mx-auto mb-6 w-12 bg-primary" />
-          <p className="mx-auto mb-12 max-w-lg text-muted-foreground">
-            I'm always open to discussing new projects, creative ideas, or
-            opportunities to be part of your visions.
-          </p>
-        </div>
+    <section id={SECTIONS.CONTACT} className="scroll-mt-24 py-24">
+      <div ref={ref} className="mx-auto max-w-5xl px-6">
+        <SectionHeader
+          index="05"
+          kicker="Contact"
+          title="Let's build something"
+          lead="I'm open to full-stack roles, freelance projects, and interesting collaborations. Drop me a message and I'll get back to you."
+          className={isVisible ? "animate-fade-in-up" : "opacity-0"}
+        />
 
-        <div className="mx-auto max-w-lg">
-          {submitStatus.type === "success" ? (
-            <div
-              className="relative space-y-8 text-center"
-              role="alert"
-              aria-live="polite"
-            >
-              {/* Sparkle particles */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <Sparkles
-                  className="absolute left-[15%] top-[10%] size-4 text-primary/60 animate-sparkle"
-                  style={{ animationDelay: "0.1s" }}
-                />
-                <Sparkles
-                  className="absolute right-[18%] top-[5%] size-3 text-primary/40 animate-sparkle"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <Sparkles
-                  className="absolute left-[25%] top-[25%] size-3 text-primary/50 animate-sparkle"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                <Sparkles
-                  className="absolute right-[25%] top-[20%] size-4 text-primary/60 animate-sparkle"
-                  style={{ animationDelay: "0.2s" }}
-                />
-                <Sparkles
-                  className="absolute left-[10%] top-[18%] size-3 text-primary/30 animate-sparkle"
-                  style={{ animationDelay: "0.7s" }}
-                />
-                <Sparkles
-                  className="absolute right-[12%] top-[15%] size-3 text-primary/50 animate-sparkle"
-                  style={{ animationDelay: "0.4s" }}
-                />
-              </div>
-
-              {/* Glowing background card */}
-              <div className="relative rounded-2xl border border-border bg-card p-10 shadow-2xl">
-                {/* Glow effect behind card */}
-                <div className="absolute -inset-px -z-10 rounded-2xl bg-linear-to-br from-primary/20 via-transparent to-primary/10 blur-sm animate-success-glow" />
-
-                {/* Animated check circle */}
-                <div className="mx-auto mb-6 flex size-20 items-center justify-center animate-success-scale-in">
-                  <div className="relative flex size-20 items-center justify-center rounded-full bg-primary/10 animate-success-ring-pulse">
-                    <div className="absolute inset-0 rounded-full bg-linear-to-br from-primary/20 to-primary/5" />
-                    <svg
-                      className="relative size-10"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M5 13l4 4L19 7"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-primary"
-                        style={{
-                          strokeDasharray: 50,
-                          strokeDashoffset: 0,
-                          animation:
-                            "success-check-draw 0.6s ease-out 0.3s both",
-                        }}
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Text content */}
-                <h3 className="mb-2 text-2xl font-bold text-foreground animate-success-text-in">
-                  Message Sent!
-                </h3>
-                <p className="text-muted-foreground animate-success-text-in-delay">
-                  {submitStatus.message}
-                </p>
-              </div>
-
-              {/* Send another button */}
-              <Button
-                type="button"
-                size="lg"
-                variant="outline"
-                className="w-full gap-2 border-border bg-card transition-all duration-300 hover:border-primary/50 hover:bg-primary/5 animate-success-btn-in"
-                onClick={resetForm}
-              >
-                <MessageSquare className="size-4" />
-                Send Another Message
-              </Button>
-            </div>
-          ) : (
-            <form className="space-y-4" onSubmit={handleSubmit} noValidate>
-              <div>
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  aria-label="Your name"
-                />
-              </div>
-              <div>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  aria-label="Your email"
-                />
-              </div>
-              <div>
-                <Input
-                  type="text"
-                  name="subject"
-                  placeholder="Subject (Optional)"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  aria-label="Subject"
-                />
-              </div>
-              <div>
-                <Textarea
-                  name="message"
-                  placeholder="Your Message"
-                  rows={6}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  aria-label="Your message"
-                />
-              </div>
-
-              {submitStatus.type === "error" && (
-                <div
-                  className="rounded-lg bg-red-50 p-3 text-center text-sm font-medium text-red-700 ring-1 ring-red-200"
-                  role="alert"
-                  aria-live="polite"
-                >
-                  {submitStatus.message}
-                </div>
-              )}
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full"
-                disabled={isSubmitting}
-                aria-busy={isSubmitting}
-              >
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    <Send className="size-4" />
-                    Send Message
-                  </>
-                )}
-              </Button>
-            </form>
-          )}
-
-          <div className="relative mt-12 flex items-center justify-center gap-4">
-            <Button
-              variant="outline"
-              size="icon"
+        <div
+          className={`mt-12 grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16 ${
+            isVisible ? "animate-fade-in-up-delay" : "opacity-0"
+          }`}
+        >
+          {/* Direct contact methods */}
+          <div>
+            <button
               type="button"
               onClick={copyEmail}
-              aria-label="Copy email"
+              className="group flex w-full items-center justify-between gap-3 rounded-xl border border-border bg-card p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
             >
-              <Mail className="size-5" />
-            </Button>
-            {socialLinks.map((link) => (
-              <Button
-                key={link.label}
-                nativeButton={false}
-                variant="outline"
-                size="icon"
-                render={
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.label}
-                  />
-                }
-              >
-                <link.icon className="size-5" />
-              </Button>
-            ))}
+              <span className="flex items-center gap-3">
+                <Mail className="size-4 text-muted-foreground" />
+                <span className="min-w-0">
+                  <span className="block font-mono text-caption uppercase text-muted-foreground">
+                    Email
+                  </span>
+                  <span className="block truncate text-body text-foreground">
+                    {SOCIAL_LINKS.EMAIL}
+                  </span>
+                </span>
+              </span>
+              <span className="shrink-0 font-mono text-caption text-muted-foreground">
+                {emailCopied ? (
+                  <span className="flex items-center gap-1 text-primary">
+                    <Check className="size-3.5" /> Copied
+                  </span>
+                ) : (
+                  "Copy"
+                )}
+              </span>
+            </button>
 
-            {emailCopied && (
+            <div className="mt-3 flex flex-col gap-3">
+              {directLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-3 rounded-xl border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                >
+                  <span className="flex items-center gap-3">
+                    <link.icon className="size-4 text-muted-foreground" />
+                    <span>
+                      <span className="block font-mono text-caption uppercase text-muted-foreground">
+                        {link.label}
+                      </span>
+                      <span className="block text-body text-foreground">
+                        {link.value}
+                      </span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Form / success */}
+          <div className="card-elevated p-6 sm:p-8">
+            {submitStatus.type === "success" ? (
               <div
-                className="absolute -top-12 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-lg animate-in fade-in zoom-in-95 duration-200"
-                role="status"
+                className="flex flex-col items-start justify-center py-4"
+                role="alert"
                 aria-live="polite"
               >
-                <Check className="size-4 shrink-0" />
-                Email copied to clipboard!
+                <div className="flex size-12 items-center justify-center rounded-full bg-primary/10">
+                  <svg className="size-6" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M5 13l4 4L19 7"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-primary"
+                      style={{
+                        strokeDasharray: 30,
+                        strokeDashoffset: 30,
+                        animation: "success-check-draw 0.5s ease-out 0.1s both",
+                      }}
+                    />
+                  </svg>
+                </div>
+                <h3 className="mt-5 text-title font-semibold text-foreground">
+                  Message sent
+                </h3>
+                <p className="mt-2 text-body text-muted-foreground">
+                  {submitStatus.message}
+                </p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="mt-6"
+                  onClick={resetForm}
+                >
+                  Send another message
+                </Button>
               </div>
+            ) : (
+              <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className={fieldLabel}>
+                      Name
+                    </label>
+                    <Input
+                      id="name"
+                      type="text"
+                      name="name"
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      disabled={isSubmitting}
+                      className="h-11"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className={fieldLabel}>
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="you@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      disabled={isSubmitting}
+                      className="h-11"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="subject" className={fieldLabel}>
+                    Subject <span className="normal-case">(optional)</span>
+                  </label>
+                  <Input
+                    id="subject"
+                    type="text"
+                    name="subject"
+                    placeholder="What's this about?"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="h-11"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className={fieldLabel}>
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell me a little about your project or role…"
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                {submitStatus.type === "error" && (
+                  <div
+                    className="rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-caption text-destructive"
+                    role="alert"
+                    aria-live="polite"
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="h-11 w-full text-body"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    "Sending…"
+                  ) : (
+                    <>
+                      <Send className="size-4" />
+                      Send message
+                    </>
+                  )}
+                </Button>
+              </form>
             )}
           </div>
         </div>

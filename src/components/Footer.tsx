@@ -16,53 +16,46 @@ function Footer() {
   };
 
   return (
-    <footer className="border-t bg-card py-8">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Jonathan Magno. All rights
-            reserved.
-          </p>
+    <footer className="border-t border-border py-10">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
+        <p className="font-mono text-caption text-muted-foreground">
+          © {new Date().getFullYear()} Jonathan Magno
+        </p>
 
-          <div className="flex items-center gap-2">
-            {socialLinks.map((link) => (
-              <Button
-                key={link.label}
-                nativeButton={false}
-                variant="ghost"
-                size="icon"
-                className="size-9 rounded-full text-muted-foreground hover:text-primary"
-                render={
-                  <a
-                    href={link.href}
-                    target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={
-                      link.href.startsWith("mailto:")
-                        ? undefined
-                        : "noopener noreferrer"
-                    }
-                    aria-label={link.label}
-                  />
-                }
-              >
-                <link.icon className="size-4" />
-              </Button>
-            ))}
+        <div className="flex items-center gap-1">
+          {socialLinks.map((link) => (
             <Button
-              type="button"
+              key={link.label}
+              nativeButton={false}
               variant="ghost"
               size="icon"
-              className="size-9 rounded-full text-muted-foreground hover:text-primary"
-              onClick={scrollToTop}
-              aria-label="Back to top"
+              className="text-muted-foreground hover:text-foreground"
+              render={
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={
+                    link.href.startsWith("mailto:")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
+                  aria-label={link.label}
+                />
+              }
             >
-              <ArrowUp className="size-4" />
+              <link.icon className="size-4" />
             </Button>
-          </div>
-
-          <p className="text-sm text-muted-foreground">
-            Built with React & Tailwind CSS
-          </p>
+          ))}
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="text-muted-foreground hover:text-foreground"
+            onClick={scrollToTop}
+            aria-label="Back to top"
+          >
+            <ArrowUp className="size-4" />
+          </Button>
         </div>
       </div>
     </footer>

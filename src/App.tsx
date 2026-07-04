@@ -48,8 +48,14 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <a
+        href="#main"
+        className="sr-only rounded-md bg-primary px-4 py-2 font-mono text-caption text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
+      >
+        Skip to content
+      </a>
       <Header activeSection={activeSection} />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <About />
         <Experience />

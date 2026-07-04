@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Sun, Moon, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SECTIONS } from "@/constants";
 import { useTheme } from "@/hooks/useTheme";
-import logoJdm from "@/assets/logo-jdm.png";
 
 interface HeaderProps {
   activeSection: string;
@@ -16,40 +14,36 @@ const navItems = [
   { id: SECTIONS.EXPERIENCE, label: "Experience" },
   { id: SECTIONS.SKILLS, label: "Skills" },
   { id: SECTIONS.PROJECTS, label: "Projects" },
-  { id: SECTIONS.CONTACT, label: "Contact" },
 ];
 
 function Header({ activeSection }: HeaderProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-lg">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <button
           onClick={() => scrollToSection(SECTIONS.HOME)}
-          className="text-xl font-bold tracking-tight text-primary"
+          className="rounded-sm font-display text-body font-semibold tracking-tight text-foreground"
+          aria-label="Jonathan Magno — back to top"
         >
-          <img src={logoJdm} alt="JDM Logo" className="h-12" />
+          Jonathan Magno<span className="text-primary">.</span>
         </button>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-7 md:flex">
           {navItems.map((item) => (
             <li key={item.id}>
               <button
                 onClick={() => scrollToSection(item.id)}
+                aria-current={activeSection === item.id ? "true" : undefined}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "font-mono text-caption underline-offset-8 transition-colors",
                   activeSection === item.id
-                    ? "bg-primary/10 text-primary"
+                    ? "font-semibold text-primary underline decoration-primary decoration-2"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
@@ -59,7 +53,11 @@ function Header({ activeSection }: HeaderProps) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
+          <Button size="sm" onClick={() => scrollToSection(SECTIONS.CONTACT)}>
+            <Mail className="size-4" />
+            Get in touch
+          </Button>
           <Button
             variant="ghost"
             size="icon"
@@ -73,39 +71,8 @@ function Header({ activeSection }: HeaderProps) {
               <Moon className="size-5" />
             )}
           </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-          </Button>
         </div>
       </nav>
-
-      {isMenuOpen && (
-        <div className="border-t bg-background px-6 py-4 md:hidden">
-          <ul className="flex flex-col gap-1">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <button
-                  onClick={() => scrollToSection(item.id)}
-                  className={cn(
-                    "w-full rounded-md px-3 py-2 text-left text-sm font-medium transition-colors",
-                    activeSection === item.id
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </header>
   );
 }

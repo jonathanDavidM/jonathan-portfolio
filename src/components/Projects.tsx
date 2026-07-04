@@ -1,18 +1,8 @@
-import { useRef, useState, useCallback, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { SECTIONS } from "@/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import SectionHeader from "./SectionHeader";
+import TechTag from "./TechTag";
 
 interface Project {
   title: string;
@@ -26,20 +16,34 @@ const projects: Project[] = [
   {
     title: "Personal Portfolio Website",
     description:
-      "A personal portfolio website built with React, TypeScript, and Tailwind CSS. It offers a clean design, responsive layout, and smooth user experience.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Shadcn UI", "Vercel"],
+      "This site — a personal portfolio built with React, TypeScript, and Tailwind CSS. A premium slate palette with a blue-to-violet accent, layered surfaces, soft depth, and a Space Grotesk display font.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Vercel"],
     github: "https://github.com/jonathanDavidM/jonathan-portfolio",
-    live: "https://jonathan-portfolio.vercel.app",
+    live: "https://jonathan-portfolio-gamma.vercel.app/",
+  },
+  {
+    title: "WTG — Order Management System",
+    description:
+      "A full-stack internal platform for managing customer orders, computing per-order profit from items and expenses, and issuing Acknowledgement Receipt PDFs. Session-based staff auth and a business dashboard.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Auth.js",
+      "Zod",
+      "React PDF",
+    ],
+    github: "https://github.com/jonathanDavidM/wtg-app",
+    live: "https://wtg-app.vercel.app/", // internal app — behind staff login
   },
   {
     title: "AI Agent Chat Widget",
     description:
-      "An embeddable AI agent powered by Groq (Llama 3.3 70B) with function-calling tools. Beyond a chatbot — it fetches my live GitHub activity, returns structured project details, and can email me a contact message directly from the conversation via Resend. Try it in the corner of this page.",
+      "An embeddable AI agent powered by Groq (Llama 3.3 70B) with function-calling tools. It fetches my live GitHub activity, returns structured project details, and can email me directly from the conversation. Try it in the corner of this page.",
     technologies: [
       "React",
       "TypeScript",
-      "Tailwind CSS",
-      "Vite",
       "Express",
       "Groq AI",
       "Function Calling",
@@ -50,207 +54,112 @@ const projects: Project[] = [
     live: "https://my-chat-bot-alpha-nine.vercel.app",
   },
   {
-    title: "Team A x Watch Mods Cavite - Ecommerce App",
+    title: "Team A × Watch Mods Cavite",
     description:
-      "An online shop featuring Team A footwear and Watch Mods Cavite’s custom MOD watches. Built as a full-featured eCommerce platform, it offers a clean design, responsive layout, and smooth user shopping flow.",
+      "A full-featured eCommerce storefront for Team A footwear and Watch Mods Cavite's custom MOD watches — clean design, responsive layout, and a smooth shopping flow.",
     technologies: [
-      "Nextjs",
-      "React",
+      "Next.js",
       "TypeScript",
       "Tailwind CSS",
       "Framer Motion",
-      "Lucide",
       "Google Sheets",
     ],
     github: "https://github.com/jonathanDavidM/ams-shop",
-    // live: "https://example.com",
   },
   {
-    title: "Wedding Template Invitation",
+    title: "Wedding Invitation Template",
     description:
-      "A digital wedding invitation template that transforms traditional invites into an elegant online experience with RSVP functionality and a mobile-friendly layout.",
-    technologies: [
-      "Nextjs",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide React",
-    ],
+      "A digital wedding invitation that turns a traditional invite into an elegant online experience, with RSVP functionality and a mobile-friendly layout.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/jonathanDavidM/invitation-website-templates",
-    // live: "https://example.com",
   },
 ];
 
-const VISIBLE_CARDS = 3;
+function ProjectLinks({ project }: { project: Project }) {
+  return (
+    <div className="mt-6 flex items-center gap-5 border-t border-border pt-4">
+      {project.github && (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-sm font-mono text-caption text-primary transition-opacity hover:opacity-70"
+        >
+          <Github className="size-3.5" />
+          Code
+        </a>
+      )}
+      {project.live && (
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-sm font-mono text-caption text-primary transition-opacity hover:opacity-70"
+        >
+          Live demo
+          <ArrowUpRight className="size-3.5" />
+        </a>
+      )}
+    </div>
+  );
+}
 
 function Projects() {
   const { ref, isVisible } = useScrollAnimation();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const maxIndex = Math.max(0, projects.length - VISIBLE_CARDS);
-  const canScrollLeft = currentIndex > 0;
-  const canScrollRight = currentIndex < maxIndex;
-
-  const scrollTo = useCallback(
-    (direction: "left" | "right") => {
-      setCurrentIndex((prev) =>
-        direction === "left"
-          ? Math.max(0, prev - 1)
-          : Math.min(maxIndex, prev + 1)
-      );
-    },
-    [maxIndex]
-  );
-
-  useEffect(() => {
-    if (!trackRef.current) return;
-    const card = trackRef.current.children[0] as HTMLElement | undefined;
-    if (!card) return;
-    const gap = 24; // gap-6 = 1.5rem = 24px
-    const offset = currentIndex * (card.offsetWidth + gap);
-    trackRef.current.style.transform = `translateX(-${offset}px)`;
-  }, [currentIndex]);
 
   return (
-    <section id={SECTIONS.PROJECTS} className="py-24">
-      <div ref={ref} className="mx-auto max-w-6xl px-6">
-        <div
-          className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-        >
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            My Work
-          </p>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Featured Projects
-          </h2>
-          <Separator className="mx-auto mb-12 w-12 bg-primary" />
-        </div>
+    <section id={SECTIONS.PROJECTS} className="scroll-mt-24 py-24">
+      <div ref={ref} className="mx-auto max-w-5xl px-6">
+        <SectionHeader
+          index="04"
+          kicker="Projects"
+          title="Selected work"
+          lead="A few things I've designed and built recently — from AI products to full-stack business apps."
+          className={isVisible ? "animate-fade-in-up" : "opacity-0"}
+        />
 
-        <div className="relative">
-          {/* Left arrow */}
-          {canScrollLeft && (
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              className="absolute -left-12 top-1/2 z-10 -translate-y-1/2 rounded-full border-border bg-card shadow-lg transition-all hover:bg-primary hover:text-primary-foreground"
-              onClick={() => scrollTo("left")}
-              aria-label="Previous project"
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <article
+              key={project.title}
+              className={`card-elevated card-hover flex h-full flex-col p-6 ${
+                isVisible ? "" : "opacity-0"
+              }`}
+              style={
+                isVisible
+                  ? {
+                      animation: `fade-in-up 0.5s ease-out ${
+                        0.15 + index * 0.08
+                      }s both`,
+                    }
+                  : undefined
+              }
             >
-              <ChevronLeft className="size-5" />
-            </Button>
-          )}
-
-          {/* Right arrow */}
-          {canScrollRight && (
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              className="absolute -right-12 top-1/2 z-10 -translate-y-1/2 rounded-full border-border bg-card shadow-lg transition-all hover:bg-primary hover:text-primary-foreground"
-              onClick={() => scrollTo("right")}
-              aria-label="Next project"
-            >
-              <ChevronRight className="size-5" />
-            </Button>
-          )}
-
-          {/* Carousel track */}
-          <div className="overflow-hidden">
-            <div
-              ref={trackRef}
-              className="flex gap-6 transition-transform duration-500 ease-in-out"
-            >
-              {projects.map((project, index) => (
-                <Card
-                  key={index}
-                  className={`group flex min-w-0 shrink-0 flex-col transition-all hover:-translate-y-1 hover:shadow-lg ${isVisible ? "" : "opacity-0"}`}
-                  style={{
-                    width: `calc((100% - ${(VISIBLE_CARDS - 1) * 24}px) / ${VISIBLE_CARDS})`,
-                    ...(isVisible
-                      ? {
-                          animation: `fade-in-up 0.5s ease-out ${0.2 + index * 0.15}s both`,
-                        }
-                      : undefined),
-                  }}
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-display text-body font-semibold text-foreground">
+                  {project.title}
+                </h3>
+                <span
+                  aria-hidden
+                  className="text-gradient font-mono text-caption font-semibold"
                 >
-                  <CardHeader>
-                    <CardTitle className="text-lg">{project.title}</CardTitle>
-                    <CardDescription className="leading-relaxed">
-                      {project.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-1 flex-col">
-                    <div className="flex-1" />
-                    <div className="mt-auto flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                  <CardFooter className="mt-auto gap-2">
-                    {project.github && (
-                      <Button
-                        nativeButton={false}
-                        variant="ghost"
-                        size="sm"
-                        render={
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          />
-                        }
-                      >
-                        <Github className="size-4" />
-                        Code
-                      </Button>
-                    )}
-                    {project.live && (
-                      <Button
-                        nativeButton={false}
-                        variant="ghost"
-                        size="sm"
-                        render={
-                          <a
-                            href={project.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          />
-                        }
-                      >
-                        <ExternalLink className="size-4" />
-                        Demo
-                      </Button>
-                    )}
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
 
-          {/* Dot indicators */}
-          {projects.length > VISIBLE_CARDS && (
-            <div className="mt-6 flex justify-center gap-2">
-              {Array.from({ length: maxIndex + 1 }, (_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setCurrentIndex(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === currentIndex
-                      ? "w-6 bg-primary"
-                      : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          )}
+              <p className="mt-3 flex-1 text-caption leading-relaxed text-muted-foreground">
+                {project.description}
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <TechTag key={tech}>{tech}</TechTag>
+                ))}
+              </div>
+
+              <ProjectLinks project={project} />
+            </article>
+          ))}
         </div>
       </div>
     </section>

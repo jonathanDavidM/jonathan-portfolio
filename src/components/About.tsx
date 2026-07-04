@@ -1,80 +1,71 @@
-import { Separator } from "@/components/ui/separator";
-import { Code, Lightbulb, Users, Bot } from "lucide-react";
 import { SECTIONS } from "@/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import SectionHeader from "./SectionHeader";
 
-const highlights = [
-  {
-    icon: Code,
-    title: "Clean Code",
-    description: "Writing maintainable, well-structured code is my priority.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Problem Solver",
-    description: "Turning complex problems into simple, elegant solutions.",
-  },
-  {
-    icon: Bot,
-    title: "AI-Powered",
-    description:
-      "Leveraging Claude, Cursor, ChatGPT, and Copilot to deliver faster and smarter.",
-  },
-  {
-    icon: Users,
-    title: "Team Player",
-    description: "Collaborating effectively and sharing knowledge with others.",
-  },
+const facts = [
+  { label: "Currently", value: "Full-stack dev, mySMB.com" },
+  { label: "Experience", value: "8+ years in tech" },
+  { label: "Focus", value: "React · TypeScript · Node.js" },
+  { label: "Workflow", value: "AI-assisted · agentic" },
+  { label: "Based in", value: "Philippines · remote-friendly" },
 ];
 
 function About() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id={SECTIONS.ABOUT} className="py-24">
-      <div ref={ref} className="mx-auto max-w-6xl px-6">
-        <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            About Me
-          </p>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Get to know me
-          </h2>
-          <Separator className="mx-auto mb-12 w-12 bg-primary" />
-        </div>
+    <section id={SECTIONS.ABOUT} className="scroll-mt-24 py-24">
+      <div ref={ref} className="mx-auto max-w-5xl px-6">
+        <SectionHeader
+          index="01"
+          kicker="About"
+          title="A developer who cares about the whole product"
+          className={isVisible ? "animate-fade-in-up" : "opacity-0"}
+        />
 
-        <div className={`mx-auto max-w-2xl text-center ${isVisible ? "animate-fade-in-up-delay" : "opacity-0"}`}>
-          <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-            I'm a passionate full stack developer who loves building
-            interactive, user-friendly applications from end to end — crafting
-            polished interfaces on the frontend and dependable, well-structured
-            APIs on the backend. I enjoy turning complex problems into simple,
-            beautiful, and intuitive solutions.
-          </p>
-          <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-            I also leverage AI tools professionally to boost productivity and
-            code quality — including Claude, Cursor, ChatGPT, GitHub Copilot,
-            and more. Integrating AI into my workflow allows me to ship faster
-            while maintaining high standards.
-          </p>
-        </div>
+        <div
+          className={`mt-12 grid gap-12 lg:grid-cols-[1.7fr_1fr] lg:gap-16 ${
+            isVisible ? "animate-fade-in-up-delay" : "opacity-0"
+          }`}
+        >
+          <div className="space-y-5 text-body text-muted-foreground">
+            <p>
+              I'm a full-stack developer who likes owning a feature from end to
+              end — designing a clean, accessible interface on the frontend and
+              backing it with dependable, well-structured APIs. I care most
+              about the details that make software feel considered: sensible
+              states, honest error handling, and layouts that hold up on every
+              screen.
+            </p>
+            <p>
+              Lately I've been building AI-powered products — from an embeddable
+              chat agent with function-calling tools to internal apps that
+              handle real business data. I work in an AI-assisted, agent-driven
+              way — "vibe coding" with Claude Code, Cursor, and Copilot to move
+              fast — while staying opinionated about the code that actually
+              ships.
+            </p>
+            <p>
+              Before focusing on the web I spent years across enterprise
+              development and IT support, which taught me to work with
+              stakeholders, ship on deadlines, and keep systems running in
+              production.
+            </p>
+          </div>
 
-        <div className={`mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 ${isVisible ? "animate-fade-in-up-delay" : "opacity-0"}`}>
-          {highlights.map((item, index) => (
-            <div
-              key={item.title}
-              className="group rounded-xl border bg-card p-6 text-center transition-all hover:border-primary/20 hover:shadow-lg"
-              style={isVisible ? { animation: `fade-in-up 0.5s ease-out ${0.3 + index * 0.15}s both` } : undefined}
-            >
-              <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                <item.icon className="size-6" />
+          <dl className="card-elevated divide-y divide-border p-6">
+            {facts.map((fact, i) => (
+              <div
+                key={fact.label}
+                className={`flex flex-col gap-1 ${i === 0 ? "pb-4" : "py-4"} last:pb-0`}
+              >
+                <dt className="font-mono text-caption uppercase text-muted-foreground">
+                  {fact.label}
+                </dt>
+                <dd className="text-body text-foreground">{fact.value}</dd>
               </div>
-              <h3 className="mb-2 font-semibold">{item.title}</h3>
-              <p className="text-sm text-muted-foreground">
-                {item.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </dl>
         </div>
       </div>
     </section>

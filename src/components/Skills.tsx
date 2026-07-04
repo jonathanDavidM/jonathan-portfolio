@@ -5,10 +5,10 @@ import {
   Wrench,
   type LucideIcon,
 } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 import { SECTIONS } from "@/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import SectionHeader from "./SectionHeader";
+import TechTag from "./TechTag";
 
 interface SkillCategory {
   icon: LucideIcon;
@@ -21,7 +21,7 @@ const skillCategories: SkillCategory[] = [
   {
     icon: Code2,
     title: "Frontend",
-    description: "Building polished, responsive, and accessible interfaces.",
+    description: "Polished, responsive, accessible interfaces.",
     skills: [
       "React",
       "Next.js",
@@ -30,14 +30,14 @@ const skillCategories: SkillCategory[] = [
       "Tailwind CSS",
       "HTML5",
       "CSS3",
-      "Shadcn UI",
+      "shadcn/ui",
       "Framer Motion",
     ],
   },
   {
     icon: Server,
     title: "Backend",
-    description: "Designing reliable APIs and server-side logic.",
+    description: "Reliable APIs and server-side logic.",
     skills: [
       "Node.js",
       "Express",
@@ -52,17 +52,16 @@ const skillCategories: SkillCategory[] = [
   {
     icon: Database,
     title: "Data & AI",
-    description: "Persisting data and integrating modern AI capabilities.",
+    description: "Persistence and modern AI capabilities.",
     skills: [
-      "MongoDB",
       "PostgreSQL",
+      "MongoDB",
       "MySQL",
       "SQL Server",
-      "Google Sheets API",
-      "Claude (Anthropic)",
-      "OpenAI (GPT)",
+      "Prisma",
+      "Claude",
+      "OpenAI",
       "Groq",
-      "Llama 3",
       "LLM Integration",
       "Prompt Engineering",
     ],
@@ -70,7 +69,7 @@ const skillCategories: SkillCategory[] = [
   {
     icon: Wrench,
     title: "Tools & Workflow",
-    description: "Shipping faster with the right tools and AI assistants.",
+    description: "Shipping faster with the right setup.",
     skills: [
       "Git",
       "GitHub",
@@ -78,7 +77,6 @@ const skillCategories: SkillCategory[] = [
       "Vercel",
       "ESLint",
       "Prettier",
-      "Claude",
       "Cursor",
       "GitHub Copilot",
     ],
@@ -89,42 +87,39 @@ function Skills() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id={SECTIONS.SKILLS} className="bg-muted/50 py-24">
-      <div ref={ref} className="mx-auto max-w-6xl px-6">
-        <div
-          className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-        >
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            My Expertise
-          </p>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Skills & Technologies
-          </h2>
-          <Separator className="mx-auto mb-12 w-12 bg-primary" />
-        </div>
+    <section id={SECTIONS.SKILLS} className="scroll-mt-24 py-24">
+      <div ref={ref} className="mx-auto max-w-5xl px-6">
+        <SectionHeader
+          index="03"
+          kicker="Skills"
+          title="Technologies I work with"
+          className={isVisible ? "animate-fade-in-up" : "opacity-0"}
+        />
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {skillCategories.map((category, index) => (
             <div
               key={category.title}
-              className={`group rounded-xl border bg-card p-6 transition-all hover:border-primary/20 hover:shadow-lg ${isVisible ? "" : "opacity-0"}`}
+              className={`card-elevated card-hover p-6 ${isVisible ? "" : "opacity-0"}`}
               style={
                 isVisible
                   ? {
-                      animation: `fade-in-up 0.5s ease-out ${0.2 + index * 0.1}s both`,
+                      animation: `fade-in-up 0.5s ease-out ${
+                        0.15 + index * 0.1
+                      }s both`,
                     }
                   : undefined
               }
             >
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <div className="mb-5 flex items-center gap-3">
+                <div className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent-2/10 text-primary ring-1 ring-primary/20">
                   <category.icon className="size-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold leading-tight">
+                  <h3 className="text-body font-semibold text-foreground">
                     {category.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-caption text-muted-foreground">
                     {category.description}
                   </p>
                 </div>
@@ -132,13 +127,7 @@ function Skills() {
 
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <Badge
-                    key={skill}
-                    variant="secondary"
-                    className="px-3 py-1 text-xs font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
-                  >
-                    {skill}
-                  </Badge>
+                  <TechTag key={skill}>{skill}</TechTag>
                 ))}
               </div>
             </div>

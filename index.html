@@ -4,7 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo-jdm.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#1e3a8a" />
+    <meta name="theme-color" content="#0f1424" />
+
+    <!-- Display font: Space Grotesk (headings) — only weights used (400/600) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Jonathan Magno | Full Stack Developer</title>
     <meta
@@ -16,17 +24,27 @@
       name="keywords"
       content="Jonathan Magno, Full Stack Developer, React, TypeScript, Node.js, Next.js, Tailwind CSS, Web Developer, Portfolio"
     />
-    <link rel="canonical" href="https://jonathan-portfolio.vercel.app/" />
+    <link rel="canonical" href="https://jonathan-portfolio-gamma.vercel.app/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jonathan-portfolio.vercel.app/" />
+    <meta property="og:url" content="https://jonathan-portfolio-gamma.vercel.app/" />
+    <meta property="og:site_name" content="Jonathan Magno" />
     <meta property="og:title" content="Jonathan Magno | Full Stack Developer" />
     <meta
       property="og:description"
       content="Full Stack Developer building fast, accessible, and beautiful web applications with React, TypeScript, and Node.js."
     />
-    <meta property="og:image" content="https://jonathan-portfolio.vercel.app/logo-jdm.png" />
+    <meta
+      property="og:image"
+      content="https://jonathan-portfolio-gamma.vercel.app/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Jonathan Magno — Full-Stack Developer"
+    />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -35,7 +53,35 @@
       name="twitter:description"
       content="Full Stack Developer building fast, accessible, and beautiful web applications with React, TypeScript, and Node.js."
     />
-    <meta name="twitter:image" content="https://jonathan-portfolio.vercel.app/logo-jdm.png" />
+    <meta
+      name="twitter:image"
+      content="https://jonathan-portfolio-gamma.vercel.app/og-image.png"
+    />
+
+    <!-- Structured data: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jonathan Magno",
+        "jobTitle": "Full-Stack Developer",
+        "url": "https://jonathan-portfolio-gamma.vercel.app/",
+        "image": "https://jonathan-portfolio-gamma.vercel.app/og-image.png",
+        "sameAs": [
+          "https://github.com/jonathanDavidM",
+          "https://www.linkedin.com/in/jonathan-magno-ab3775146"
+        ],
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "Next.js",
+          "Tailwind CSS",
+          "PostgreSQL",
+          "AI-assisted development"
+        ]
+      }
+    </script>
 
     <script>
       (function () {
